@@ -9,6 +9,6 @@ package ua.block02.task02.game;
  */
 public interface Const {
 
-    public static final int MIN_VALUE = 0;
-    public static final int MAX_VALUE = 100;
+    public final int MIN_VALUE = 0;
+    public final int MAX_VALUE = 100;
 }

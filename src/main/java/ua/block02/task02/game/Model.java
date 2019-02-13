@@ -9,22 +9,13 @@ package ua.block02.task02.game;
  */
 public class Model {
 
-    private int minValue;
-    private int maxValue;
+    private int elemOfRange;
 
-    public int getMinValue() {
-        return minValue;
+    public int getElemOfRange() {
+        return elemOfRange;
     }
 
-    public void setMinValue(int minValue) {
-        this.minValue = minValue;
-    }
-
-    public int getMaxValue() {
-        return maxValue;
-    }
-
-    public void setMaxValue(int maxValue) {
-        this.maxValue = maxValue;
+    public void setElemOfRange(int elemOfRange) {
+        this.elemOfRange = elemOfRange;
     }
 }

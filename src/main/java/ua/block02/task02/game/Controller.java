@@ -10,7 +10,7 @@ import java.util.Scanner;
  * @version $Id$.
  * @since 0.1.
  */
-public class Controller {
+public class Controller implements Const {
 
     Scanner sc = new Scanner(System.in);
 
@@ -28,38 +28,29 @@ public class Controller {
         return randomNum;
     }
 
-    public void min() {
-        view.printMessage(View.INPUT_INT_MIN_VALUE);
-        model.setMinValue(sc.nextInt());
-    }
-
-    public void max() {
-        view.printMessage(View.INPUT_INT_MAX_VALUE);
-        model.setMaxValue(sc.nextInt());
-    }
-
     public void processUser() {
-        min();
-        max();
-        int answer = rand(model.getMinValue(), model.getMaxValue());
-        int numb;
+        int answer = rand(MIN_VALUE, MAX_VALUE);
+        System.out.println(answer);
+        int numb, min = 0, max = 100;
 
-        view.printMessage(View.CONCEIVED_NUMBER, model.getMinValue(), model.getMaxValue());
+        view.printMessage(View.CONCEIVED_NUMBER, MIN_VALUE, MAX_VALUE);
 
         do {
             view.printMessage(View.TRY_TO_GUESS);
             numb = sc.nextInt();
+            model.setElemOfRange(numb);
 
             if (numb == answer) {
                 view.printMessage(View.YOU_WON);
+            } else if (numb < answer) {
+                min = numb;
+                view.printMessage(View.NUMB_IN_RANGE, min, max);
+            } else if (numb > answer) {
+                max = numb;
+                view.printMessage(View.NUMB_IN_RANGE, min, max);
             } else {
-                view.printMessage(View.DESIRED_NUMB);
-                if (numb < answer) {
-                    view.printMessage(View.CLOSER, model.getMaxValue());
-                } else {
-                    view.printMessage(View.CLOSER, model.getMinValue());
-                }
-                view.printMessage(View.TRY_AGAIN);
+                view.printMessage(View.ERROR);
+                view.printMessage(View.NUMB_IN_RANGE, min, max);
             }
         } while (answer != numb);
     }
