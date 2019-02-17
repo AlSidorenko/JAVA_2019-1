@@ -11,8 +11,6 @@ import java.util.Scanner;
  */
 public class Controller implements TextConstants {
 
-    public static final String[] SENTENCE = {"Hello", "world!"};
-
     private Model model;
     private View view;
 
@@ -33,7 +31,7 @@ public class Controller implements TextConstants {
         StringBuilder sb = new StringBuilder();
 
         view.printMessage(ENTER_FIRST_WORD);
-        while (!sc.hasNext(SENTENCE[0])) {
+        while (!sc.hasNext(HELLO)) {
             view.printMessage(WRONG_OPERATION);
             sc.next();
         }
@@ -41,7 +39,7 @@ public class Controller implements TextConstants {
         sb.append(" ");
 
         view.printMessage(ENTER_SECOND_WORD);
-        while (!sc.hasNext(SENTENCE[1])) {
+        while (!sc.hasNext(WORLD)) {
             view.printMessage(WRONG_OPERATION);
             sc.next();
         }

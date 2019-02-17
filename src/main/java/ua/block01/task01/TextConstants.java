@@ -13,4 +13,7 @@ public interface TextConstants {
     String WRONG_OPERATION = "Wrong word! Repeat please! ";
     String ENTER_FIRST_WORD = "Please, enter first word: ";
     String ENTER_SECOND_WORD = "Please, enter second word: ";
+
+    String HELLO = "Hello";
+    String WORLD = "world!";
 }
