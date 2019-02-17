@@ -9,6 +9,13 @@ package ua.block02.task02.game;
  */
 public interface Const {
 
-    public final int MIN_VALUE = 0;
-    public final int MAX_VALUE = 100;
+    int MIN_VALUE = 0;
+    int MAX_VALUE = 100;
+
+    String CONCEIVED_NUMBER = "Conceived number out of range";
+    String TRY_TO_GUESS = "Try to guess it: ";
+    String YOU_WON = "*** You are right! ***";
+    String NUMB_IN_RANGE = "Sorry, the number is in the range";
+    String ERROR = "ERROR!!! Out of range. ";
+    String TRY_AGAIN = "Try again!";
 }

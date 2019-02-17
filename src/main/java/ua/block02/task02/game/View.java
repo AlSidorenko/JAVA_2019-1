@@ -2,12 +2,7 @@ package ua.block02.task02.game;
 
 public class View {
 
-    public static final String CONCEIVED_NUMBER = "Conceived number out of range";
-    public static final String TRY_TO_GUESS = "Try to guess it: ";
-    public static final String YOU_WON = "*** You are right! ***";
-    public static final String NUMB_IN_RANGE = "Sorry, the number is in the range";
-    public static final String ERROR = "ERROR!!! Out of range. ";
-    public static final String TRY_AGAIN = "Try again!";
+
 
     public void printMessage(String message){
         System.out.print(message);

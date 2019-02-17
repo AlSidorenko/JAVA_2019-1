@@ -12,10 +12,10 @@ import java.util.Scanner;
  */
 public class Controller implements Const {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
-    View view;
-    Model model;
+    private View view;
+    private Model model;
 
     public Controller(View view, Model model) {
         this.view = view;
@@ -31,26 +31,26 @@ public class Controller implements Const {
     public void processUser() {
         int answer = rand(MIN_VALUE, MAX_VALUE);
         System.out.println(answer);
-        int numb, min = 0, max = 100;
+        int numb, min = 0, max = 0;
 
-        view.printMessage(View.CONCEIVED_NUMBER, MIN_VALUE, MAX_VALUE);
+        view.printMessage(CONCEIVED_NUMBER, MIN_VALUE, MAX_VALUE);
 
         do {
-            view.printMessage(View.TRY_TO_GUESS);
+            view.printMessage(TRY_TO_GUESS);
             numb = sc.nextInt();
             model.setElemOfRange(numb);
 
             if (numb == answer) {
-                view.printMessage(View.YOU_WON);
+                view.printMessage(YOU_WON);
             } else if (numb < answer) {
                 min = numb;
-                view.printMessage(View.NUMB_IN_RANGE, min, max);
+                view.printMessage(NUMB_IN_RANGE, min, max);
             } else if (numb > answer) {
                 max = numb;
-                view.printMessage(View.NUMB_IN_RANGE, min, max);
+                view.printMessage(NUMB_IN_RANGE, min, max);
             } else {
-                view.printMessage(View.ERROR);
-                view.printMessage(View.NUMB_IN_RANGE, min, max);
+                view.printMessage(ERROR);
+                view.printMessage(NUMB_IN_RANGE, min, max);
             }
         } while (answer != numb);
     }
