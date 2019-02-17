@@ -9,11 +9,6 @@ package ua.block01.task01;
  */
 public class View {
 
-    public static final String CORRECT_OPERATION = "Good job! Sentence: ";
-    public static final String WRONG_OPERATION = "Wrong word! Repeat please! ";
-    public static final String ENTER_FIRST_WORD = "Please, enter first word: ";
-    public static final String ENTER_SECOND_WORD = "Please, enter second word: ";
-
     public void printMessage(String message) {
         System.out.print(message);
     }
