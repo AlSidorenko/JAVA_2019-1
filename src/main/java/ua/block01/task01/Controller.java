@@ -11,34 +11,16 @@ import java.util.Scanner;
  */
 public class Controller {
 
-    /**
-     * The Constants.
-     */
     public static final String[] SENTENCE = {"Hello", "world!"};
 
-    /**
-     * Reference to the class Model.
-     */
     private Model model;
-
-    /**
-     * Reference to the class View.
-     */
     private View view;
 
-    /**
-     * Constructor.
-     * @param model - reference Model.
-     * @param view - reference View.
-     */
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
     }
 
-    /**
-     * The work method.
-     */
     public void processUser() {
         Scanner sc = new Scanner(System.in);
 
@@ -47,11 +29,6 @@ public class Controller {
 
     }
 
-    /**
-     * The Utility methods.
-     * @param sc - Scanner.
-     * @return - str.
-     */
     public String inputStrValueWithScanner(Scanner sc) {
         StringBuilder sb = new StringBuilder();
 

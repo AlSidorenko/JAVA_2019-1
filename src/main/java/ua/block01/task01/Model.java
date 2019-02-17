@@ -9,23 +9,12 @@ package ua.block01.task01;
  */
 public class Model {
 
-    /**
-     * String variable.
-     */
     private String text;
 
-    /**
-     * Method get.
-     * @return - string variable.
-     */
     public String getText() {
         return text;
     }
 
-    /**
-     * Method set.
-     * @param text - string variable.
-     */
     public void setText(String text) {
         this.text = text;
     }
