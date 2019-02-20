@@ -1,55 +1,65 @@
 package ua.block04.trainingcod.applicationForm01.view;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-import static ua.block04.trainingcod.applicationForm01.view.TextConstant.INPUT_STRING_DATA;
-import static ua.block04.trainingcod.applicationForm01.view.TextConstant.WRONG_INPUT_DATA;
-
-/**
- * Created by student on 26.09.2017.
- */
 public class View {
 
-    // Resource Bundle Installation's
-    static String MESSAGES_BUNDLE_NAME = "messages";
-    public static final ResourceBundle bundle =
-            ResourceBundle.getBundle(
-                    MESSAGES_BUNDLE_NAME,
-                    new Locale("ua", "UA"));  // Ukrainian
-                    //new Locale("en"));        // English
 
-    //Utilities methods
-    /**
-     *
-     * @param message
-     */
-    public void printMessage(String message){
+    public void showMessage(String message) {
         System.out.println(message);
     }
-    /**
-     *
-     * @param message
-     * @return
-     */
-    public String concatenationString(String... message){
-            StringBuilder concatString = new StringBuilder();
-            for(String v : message) {
-                concatString = concatString.append(v);
-            }
-            return new String(concatString);
+
+    public void showWrongInput() {
+        showMessage(StringConstants.WRONG_INPUT_DATA);
     }
 
-    public void printStringInput(String message) {
-        printMessage(concatenationString(
-                bundle.getString(INPUT_STRING_DATA),
-                bundle.getString(message)));
+    public void inputName() { showMessage(StringConstants.INPUT_NAME); }
+
+    public void inputSurname() { showMessage(StringConstants.INPUT_SURNAME); }
+
+    public void inputPatronymic() {
+        showMessage(StringConstants.INPUT_PATRONYMIC);
     }
 
-    public void printWrongStringInput(String message) {
-        printMessage(concatenationString(
-                bundle.getString(WRONG_INPUT_DATA),
-                bundle.getString(INPUT_STRING_DATA),
-                bundle.getString(message)));
+    public void inputNickname() {
+        showMessage(StringConstants.INPUT_NICKNAME);
+    }
+
+    public void inputHomeNumber() {
+        showMessage(StringConstants.INPUT_HOME_NUMBER);
+    }
+
+    public void inputMobileNumber1() {
+        showMessage(StringConstants.INPUT_MOBILE_NUMBER1);
+    }
+
+    public void inputMobileNumber2() {
+        showMessage(StringConstants.INPUT_MOBILE_NUMBER2);
+    }
+
+    public void inputEmail() {
+        showMessage(StringConstants.INPUT_EMAIL);
+    }
+
+    public void inputSkype() {
+        showMessage(StringConstants.INPUT_SKYPE);
+    }
+
+    public void inputIndex() {
+        showMessage(StringConstants.INPUT_INDEX);
+    }
+
+    public void inputTown() {
+        showMessage(StringConstants.INPUT_TOWN);
+    }
+
+    public void inputStreet() {
+        showMessage(StringConstants.INPUT_STREET);
+    }
+
+    public void inputHouseNumber() {
+        showMessage(StringConstants.INPUT_HOUSE_NUMBER);
+    }
+
+    public void inputApartmentNumber() {
+        showMessage(StringConstants.INPUT_APARTMENT_NUMBER);
     }
 }

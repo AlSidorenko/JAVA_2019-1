@@ -1,26 +1,25 @@
 package ua.block04.trainingcod.applicationForm01.controller;
 
-import ua.block04.trainingcod.applicationForm01.model.Model;
 import ua.block04.trainingcod.applicationForm01.view.View;
+import ua.block04.trainingcod.applicationForm01.model.Model;
 
 import java.util.Scanner;
 
-/**
- * Created by student on 26.09.2017.
- */
 public class Controller {
-    private Model model;
-    private View view;
 
-    public Controller(Model model, View view) {
-        this.model = model;
+    private View view;
+    private Model model;
+
+    public Controller(View view, Model model) {
         this.view = view;
+        this.model = model;
     }
 
     public void processUser() {
-        Scanner sc = new Scanner(System.in);
-        InputNoteNoteBook inputNoteNoteBook =
-                new InputNoteNoteBook(view, sc);
-        inputNoteNoteBook.inputNote();
+        Scanner scanner = new Scanner(System.in);
+
+        TempNotebook tempNotebook = new TempNotebook(model, view, new UtilityController(view, scanner));
+
+        tempNotebook.saveDataToModel();
     }
 }

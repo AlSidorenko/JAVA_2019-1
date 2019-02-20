@@ -4,25 +4,23 @@ import ua.block04.trainingcod.applicationForm01.view.View;
 
 import java.util.Scanner;
 
-/**
- * Created by student on 26.09.2017.
- */
 public class UtilityController {
-    private Scanner scanner;
-    private View view;
 
-    public UtilityController(Scanner scanner, View view) {
+    private View view;
+    private Scanner scanner;
+
+    public UtilityController(View view, Scanner scanner) {
         this.scanner = scanner;
         this.view = view;
     }
 
-    String inputStringValueWithScanner(String message, String regex) {
-        String res;
-        view.printStringInput(message);
-        while( !(scanner.hasNext() &&
-                (res = scanner.next()).matches(regex))) {
-            view.printWrongStringInput(message);
+    public String inputValueStringWithRegex(String regex) {
+        String value = scanner.next();
+        while(!(value.matches(regex))) {
+            view.showWrongInput();
+            value = scanner.next();
         }
-        return res;
+
+        return value;
     }
 }
