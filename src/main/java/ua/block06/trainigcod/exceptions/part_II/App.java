@@ -481,7 +481,7 @@ public class Parent {
     public void f() throws IOException, InterruptedException {}
 }
 
-class Child extends Parent {
+class Child_01 extends Parent {
     // а потомок пугает только потомком IOException
     @Override
     public void f() throws FileNotFoundException {}
@@ -514,7 +514,7 @@ public class Parent {
 
 
 // тут ошибка компиляции в Java, но, ДОПУСТИМ, ее нет
-public class Child extends Parent {
+public class Child_01 extends Parent {
     // потомок расширил Exception до Throwable
     public void f() throws Throwable {}
 }
@@ -532,8 +532,8 @@ public class Demo {
 
 public class App {
     public static void main(String[] args) {
-        // тут все компилируется, Demo.test хотел Parent и мы дали ему подтип - Child
-        Demo.test(new Child());
+        // тут все компилируется, Demo.test хотел Parent и мы дали ему подтип - Child_01
+        Demo.test(new Child_01());
     }
 }
 
