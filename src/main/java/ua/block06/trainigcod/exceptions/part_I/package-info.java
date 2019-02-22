@@ -1,13 +1,11 @@
-package ua.block06.trainigcod.exceptions.part_I;
-
 /**
- * Created on 20.02.2019.
+ * Created on 22.02.2019.
  *
  * @author Aleks Sidorenko (alek.sidorenko1979@gmail.com).
  * @version $Id$.
  * @since 0.1.
  */
-public class App {
+package ua.block06.trainigcod.exceptions.part_I;
 
 /*
 Это первая часть статьи, посвященной такому языковому механизму Java как исключения (вторая (checked/unchecked) вот).
@@ -37,7 +35,8 @@ throws
 
 
 «Магия» (т.е. некоторое поведение никак не отраженное в исходном коде и потому неповторяемое пользователем)
-исключений #1 заключается в том, что catch, throw, throws можно использовать исключительно с java.lang.Throwable или его потомками.
+исключений #1 заключается в том, что catch, throw, throws можно использовать исключительно с java.lang.Throwable или
+его потомками.
 
 throws:
 
@@ -49,7 +48,7 @@ throws:
 
 /*
 Не годится
-public class App {
+public class App01 {
     public static void main(String[] args) throws String {}
 }
 
@@ -59,7 +58,7 @@ public class App {
 /*
 catch:
 Годится
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
         } catch (Throwable t) {}
@@ -69,7 +68,7 @@ public class App {
 
 /*
 Не годится
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
         } catch (String s) {}
@@ -83,7 +82,7 @@ public class App {
 /*
 throw:
 Годится
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // Error - потомок Throwable
         throw new Error();
@@ -93,7 +92,7 @@ public class App {
 
 /*
 Не годится
-public class App {
+public class App01 {
     public static void main(String[] args) {
         throw new String("Hello!");
     }
@@ -104,7 +103,7 @@ public class App {
 
 /*
 Кроме того, throw требуется не-null аргумент, иначе NullPointerException в момент выполнения
-public class App {
+public class App01 {
     public static void main(String[] args) {
         throw null;
     }
@@ -115,7 +114,7 @@ public class App {
 
 /*
 throw и new — это две независимых операции. В следующем коде мы независимо создаем объект исключения и «бросаем» его
-public class App {
+public class App01 {
     public static void main(String[] args) {
         Error ref = new Error(); // создаем экземпляр
         throw ref;               // "бросаем" его
@@ -127,7 +126,7 @@ public class App {
 
 /*
 Однако, попробуйте проанализировать вот это
-public class App {
+public class App01 {
     public static void main(String[] args) {
         f(null);
     }
@@ -148,7 +147,7 @@ public class App {
 
 
 System.out — buffered-поток вывода, а System.err — нет. Таким образом вывод может быть как таким
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.out.println("sout");
         throw new Error();
@@ -160,7 +159,7 @@ public class App {
 
 /*
 Так и вот таким (err обогнало out при выводе в консоль)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.out.println("sout");
         throw new Error();
@@ -194,13 +193,13 @@ Stacktrace необработанного исключение выводитс�
 Если в объявлении метода сказано, что он возвращает НЕ void, то компилятор зорко следит,
 что бы мы вернули экземпляр требуемого типа или экземпляр типа, который можно неявно привести к требуемому
 
-public class App {
+public class App01 {
     public double sqr(double arg) { // надо double
         return arg * arg;           // double * double - это double
     }
 }
 
-public class App {
+public class App01 {
     public double sqr(double arg) { // надо double
         int k = 1;                  // есть int
         return k;                   // можно неявно преобразовать int в double
@@ -210,7 +209,7 @@ public class App {
 
 /*
 // на самом деле, компилятор сгенерирует байт-код для следующих исходников
-public class App {
+public class App01 {
     public double sqr(double arg) { // надо double
         int k = 1;                  // есть int
         return (double) k;          // явное преобразование int в double
@@ -220,7 +219,7 @@ public class App {
 
 /*
 вот так не пройдет (другой тип)
-public class App {
+public class App01 {
     public static double sqr(double arg) {
         return "hello!";
     }
@@ -231,7 +230,7 @@ public class App {
 
 /*
 Вот так не выйдет — нет возврата
-public class App {
+public class App01 {
     public static double sqr(double arg) {
     }
 }
@@ -241,7 +240,7 @@ public class App {
 
 /*
 и вот так не пройдет (компилятор не может удостовериться, что возврат будет)
-public class App {
+public class App01 {
     public static double sqr(double arg) {
         if (System.currentTimeMillis() % 2 == 0) {
             return arg * arg; // если currentTimeMillis() - четное число, то все ОК
@@ -255,7 +254,7 @@ public class App {
 
 /*
 Компилятор отслеживает, что бы мы что-то вернули, так как иначе непонятно, что должна была бы напечатать данная программа
-public class App {
+public class App01 {
     public static void main(String[] args) {
         double d = sqr(10.0); // ну, и чему равно d?
         System.out.println(d);
@@ -270,7 +269,7 @@ public class App {
 
 /*
 Из-забавного, можно ничего не возвращать, а «повесить метод»
-public class App {
+public class App01 {
     public static double sqr(double arg) {
         while (true); // Удивительно, но КОМПИЛИРУЕТСЯ!
     }
@@ -279,7 +278,7 @@ public class App {
 
 /*
 Тут в d никогда ничего не будет присвоено, так как метод sqr повисает
-public class App {
+public class App01 {
     public static void main(String[] args) {
         double d = sqr(10.0);  // sqr - навсегда "повиснет", и
         System.out.println(d); // d - НИКОГДА НИЧЕГО НЕ БУДЕТ ПРИСВОЕНО!
@@ -292,7 +291,7 @@ public class App {
 
 /*
 Компилятор пропустит «вилку» (таки берем в квадрат ИЛИ висим)
-public class App {
+public class App01 {
     public static double sqr(double arg) {
         if (System.currentTimeMillis() % 2 == 0) {
             return arg * arg; // ну ладно, вот твой double
@@ -305,7 +304,7 @@ public class App {
 
 /*
 Но механизм исключений позволяет НИЧЕГО НЕ ВОЗВРАЩАТЬ!
-public class App {
+public class App01 {
     public static double sqr(double arg) {
         throw new RuntimeException();
     }
@@ -314,7 +313,7 @@ public class App {
 
 /*
 Итак, у нас есть ТРИ варианта для компилятора
-public class App {
+public class App01 {
     public static double sqr(double arg) {// согласно объявлению метода ты должен вернуть double
         long time = System.currentTimeMillis();
         if (time % 2 == 0) {
@@ -331,7 +330,7 @@ public class App {
 /*
 Но КАКОЙ ЖЕ double вернет функция, бросающая RuntimeException?
 А НИКАКОЙ!
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // sqr - "сломается" (из него "выскочит" исключение),
         double d = sqr(10.0);  // выполнение метода main() прервется в этой строчке и
@@ -434,7 +433,7 @@ public static int area(int width, int height) {
 Что под этим имеется в виду?
 Программа, в ходе своего выполнения (точнее исполнения инструкций в рамках отдельного потока),
 оперирует стеком («стопкой») фреймов. Передача управления осуществляется либо в рамках одного фрейма
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // Пример: ОПЕРАТОР ПОСЛЕДОВАТЕЛЬНОСТИ
         int x = 42;    // первый шаг
@@ -446,7 +445,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // Пример: ОПЕРАТОР ВЕТВЛЕНИЯ
         if (args.length > 2) { первый шаг
@@ -463,7 +462,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // Пример: ОПЕРАТОР ЦИКЛА do..while
         int x = 1;
@@ -484,7 +483,7 @@ public class App {
 
 
 return — выходим из ОДНОГО фрейма (из фрейма #4(метод h()))
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println("#1.in");
         f(); // создаем фрейм, помещаем в стек, передаем в него управление
@@ -525,7 +524,7 @@ public class App {
 
 /*
 throw — выходим из ВСЕХ фреймов
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println("#1.in");
         f(); // создаем фрейм, помещаем в стек, передаем в него управление
@@ -565,7 +564,7 @@ public class App {
 /*
 При помощи catch мы можем остановить летящее исключение (причина, по которой мы автоматически покидаем фреймы).
 Останавливаем через 3 фрейма, пролетаем фрейм #4(метод h()) + пролетаем фрейм #3(метод g()) + фрейм #2(метод f())
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println("#1.in");
         try {
@@ -611,7 +610,7 @@ public class App {
 Обратите внимание, стандартный сценарий работы был восстановлен в методе main() (фрейм #1)
 
 Останавливаем через 2 фрейма, пролетаем фрейм #4(метод h()) + пролетаем фрейм #3(метод g())
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println("#1.in");
         f(); // создаем фрейм, помещаем в стек, передаем в него управление
@@ -656,7 +655,7 @@ public class App {
 
 /*
 Останавливаем через 1 фрейм (фактически аналог return, просто покинули фрейм «другим образом»)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println("#1.in");
         f(); // создаем фрейм, помещаем в стек, передаем в него управление
@@ -749,7 +748,7 @@ public class App {
 /*
 По первому пункту: catch — полиморфная конструкция, т.е. catch по типу Parent перехватывает летящие экземпляры любого типа,
 который является Parent-ом (т.е. экземпляры непосредственно Parent-а или любого потомка Parent-а)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -767,7 +766,7 @@ public class App {
 
 /*
 Даже так: в блоке catch мы будем иметь ссылку типа Exception на объект типа RuntimeException
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new RuntimeException();
@@ -787,7 +786,7 @@ public class App {
 
 /*
 catch по потомку не может поймать предка
-public class App {
+public class App01 {
     public static void main(String[] args) throws Exception { // пока игнорируйте 'throws'
         try {
             System.err.print(" 0");
@@ -807,7 +806,7 @@ public class App {
 /*
 catch по одному «брату» не может поймать другого «брата» (Error и Exception не находятся в отношении предок-потомок,
 они из параллельных веток наследования от Throwable)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -832,7 +831,7 @@ public class App {
 2. покидаем фрейм метода с летящим исключением
 
 А что будет, если мы зашли в catch, и потом бросили исключение ИЗ catch?
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -851,10 +850,11 @@ public class App {
 */
 
 /*
-В таком случае выполнение метода тоже прерывается (не печатаем «3»). Новое исключение не имеет никакого отношения к try-catch
+В таком случае выполнение метода тоже прерывается (не печатаем «3»). Новое исключение не имеет никакого отношения
+к try-catch
 
 Мы можем даже кинуть тот объект, что у нас есть «на руках»
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -874,7 +874,7 @@ public class App {
 
 /*
 И мы не попадем в другие секции catch, если они есть
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -899,7 +899,7 @@ public class App {
 Но важный момент в том, что catch имеет отношение исключительно к try-секции, но не к другим catch-секциям.
 
 Как покажем ниже — можно строить вложенные конструкции, но вот пример, «исправляющий» эту ситуацию
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -931,7 +931,7 @@ public class App {
 Как вы видели, мы можем расположить несколько catch после одного try.
 
 Но есть такое правило — нельзя ставить потомка после предка! (RuntimeException после Exception)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
         } catch (Exception e) {
@@ -945,7 +945,7 @@ public class App {
 
 /*
 Ставить брата после брата — можно (RuntimeException после Error)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
         } catch (Error e) {
@@ -958,7 +958,7 @@ public class App {
 /*
 Как происходит выбор «правильного» catch? Да очень просто — JVM идет сверху-вниз до тех пор,
 пока не найдет такой catch что в нем указано ваше исключение или его предок — туда и заходит. Ниже — не идет.
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new Exception();
@@ -980,7 +980,7 @@ public class App {
 /*
 Выбор catch осуществляется в runtime (а не в compile-time), значит учитывается не тип ССЫЛКИ (Throwable),
 а тип ССЫЛАЕМОГО (Exception)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             Throwable t = new Exception(); // ссылка типа Throwable указывает на объект типа Exception
@@ -1004,7 +1004,7 @@ public class App {
 7. try + finally
 
 finally-секция получает управление, если try-блок завершился успешно
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.println("try");
@@ -1020,7 +1020,7 @@ public class App {
 
 /*
 finally-секция получает управление, даже если try-блок завершился исключением
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new RuntimeException();
@@ -1036,7 +1036,7 @@ public class App {
 
 /*
 finally-секция получает управление, даже если try-блок завершился директивой выхода из метода
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             return;
@@ -1051,7 +1051,7 @@ public class App {
 
 /*
 finally-секция НЕ вызывается только если мы «прибили» JVM
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.exit(42);
@@ -1066,7 +1066,7 @@ public class App {
 
 /*
 System.exit(42) и Runtime.getRuntime().exit(42) — это синонимы
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             Runtime.getRuntime().exit(42);
@@ -1081,7 +1081,7 @@ public class App {
 
 /*
 И при Runtime.getRuntime().halt(42) — тоже не успевает зайти в finally
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             Runtime.getRuntime().halt(42);
@@ -1102,7 +1102,7 @@ if finalization-on-exit has been enabled. If the shutdown sequence has already b
 wait for any running shutdown hooks or finalizers to finish their work.
 
 Однако finally-секция не может «починить» try-блок завершившийся исключение (заметьте, «more» — не выводится в консоль)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.println("try");
@@ -1122,7 +1122,7 @@ public class App {
 /*
 Трюк с «if (true) {...}» требуется, так как иначе компилятор обнаруживает недостижимый код (последняя строка) и
 отказывается его компилировать
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.println("try");
@@ -1139,7 +1139,7 @@ public class App {
 
 /*
 И finally-секция не может «предотвратить» выход из метода, если try-блок вызвал return («more» — не выводится в консоль)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.println("try");
@@ -1157,7 +1157,7 @@ public class App {
 
 /*
 Однако finally-секция может «перебить» throw/return при помощи другого throw/return
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println(f());
     }
@@ -1174,7 +1174,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println(f());
     }
@@ -1191,7 +1191,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println(f());
     }
@@ -1210,7 +1210,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println(f());
     }
@@ -1262,7 +1262,7 @@ try {
 
 Вообще говоря, в finally-секция нельзя стандартно узнать было ли исключение.
 Конечно, можно постараться написать свой «велосипед»
-public class App {
+public class App01 {
     public static void main(String[] args) {
         System.err.println(f());
     }
@@ -1300,7 +1300,7 @@ public class App {
 
 
 Нет исключения
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1322,7 +1322,7 @@ public class App {
 Не заходим в catch, заходим в finally, продолжаем после оператора
 
 Есть исключение и есть подходящий catch
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1344,7 +1344,7 @@ public class App {
 Заходим в catch, заходим в finally, продолжаем после оператора
 
 Есть исключение но нет подходящего catch
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1370,7 +1370,7 @@ public class App {
 
 Операторы обычно допускают неограниченное вложение.
 Пример с if
-public class App {
+public class App01 {
     public static void main(String[] args) {
         if (args.length > 1) {
             if (args.length > 2) {
@@ -1385,7 +1385,7 @@ public class App {
 
 /*
 Пример с for
-public class App {
+public class App01 {
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; i++) {
@@ -1401,7 +1401,7 @@ public class App {
 /*
 Суть в том, что try-cacth-finally тоже допускает неограниченное вложение.
 Например вот так
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             try {
@@ -1419,7 +1419,7 @@ public class App {
 
 /*
 Или даже вот так
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             try {
@@ -1454,7 +1454,7 @@ public class App {
 Ну что же, давайте исследуем как это работает.
 
 Вложенный try-catch-finally без исключения
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1484,7 +1484,7 @@ public class App {
 Мы НЕ заходим в обе catch-секции (нет исключения), заходим в обе finally-секции и выполняем обе строки ПОСЛЕ finally.
 
 Вложенный try-catch-finally с исключением, которое ПЕРЕХВАТИТ ВНУТРЕННИЙ catch
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1516,7 +1516,7 @@ public class App {
 в обоих случаях выполняем код после finally (печатаем «5»и «8», так как исключение остановлено еще первым catch).
 
 Вложенный try-catch-finally с исключением, которое ПЕРЕХВАТИТ ВНЕШНИЙ catch
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1549,7 +1549,7 @@ public class App {
 так как исключение остановлено).
 
 Вложенный try-catch-finally с исключением, которое НИКТО НЕ ПЕРЕХВАТИТ
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             System.err.print(" 0");
@@ -1574,5 +1574,5 @@ public class App {
 
 >> 0 1 4 7
 >> RUNTIME EXCEPTION: Exception in thread "main" java.lang.Error
+
  */
-}
