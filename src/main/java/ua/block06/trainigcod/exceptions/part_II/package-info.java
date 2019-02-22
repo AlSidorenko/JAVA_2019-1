@@ -477,12 +477,12 @@ public class App01 {
         import java.io.FileNotFoundException;
         import java.io.IOException;
 
-public class Parent {
+public class Parent_01 {
     // предок пугает IOException и InterruptedException
     public void f() throws IOException, InterruptedException {}
 }
 
-class Child_01 extends Parent {
+class Child_01 extends Parent_01 {
     // а потомок пугает только потомком IOException
     @Override
     public void f() throws FileNotFoundException {}
@@ -493,11 +493,11 @@ class Child_01 extends Parent {
     Однако тут мы попытались «расширить тип» бросаемых исключений
         import java.io.IOException;
 
-public class Parent {
+public class Parent_02 {
     public void f() throws IOException, InterruptedException {}
 }
 
-class ChildB extends Parent {
+class ChildB extends Parent_02 {
     @Override
     public void f() throws Exception {}
 }
@@ -508,22 +508,22 @@ class ChildB extends Parent {
   /*
         Почему можно сужать тип, но не расширять?
         Рассмотрим следующую ситуацию:
-public class Parent {
+public class Parent_03 {
     // предок пугает Exception
     public void f() throws Exception {}
 }
 
 
 // тут ошибка компиляции в Java, но, ДОПУСТИМ, ее нет
-public class Child_01 extends Parent {
+public class Child_03 extends Parent_03 {
     // потомок расширил Exception до Throwable
     public void f() throws Throwable {}
 }
 
 
 public class Demo {
-    public static void test(Parent ref) {
-        // тут все компилируется, Parent.f() пугает Exception и мы его ловим catch
+    public static void test(Parent_03 ref) {
+        // тут все компилируется, Parent_03.f() пугает Exception и мы его ловим catch
         try {
             ref.f();
         } catch(Exception e) {}
@@ -533,8 +533,8 @@ public class Demo {
 
 public class App01 {
     public static void main(String[] args) {
-        // тут все компилируется, Demo.test хотел Parent и мы дали ему подтип - Child_01
-        Demo.test(new Child_01());
+        // тут все компилируется, Demo.test хотел Parent_03 и мы дали ему подтип - Child_03
+        Demo.test(new Child_03());
     }
 }
 
