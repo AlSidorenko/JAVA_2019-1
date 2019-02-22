@@ -1,17 +1,16 @@
-package ua.block06.trainigcod.exceptions.part_II;
-
 /**
- * Created on 20.02.2019.
+ * Created on 22.02.2019.
  *
  * @author Aleks Sidorenko (alek.sidorenko1979@gmail.com).
  * @version $Id$.
  * @since 0.1.
  */
-public class App {
+package ua.block06.trainigcod.exceptions.part_II;
 
-    /*
-    Это вторая часть статьи (первая часть — try-catch-finally), посвященной такому языковому механизму Java как исключения.
-    Она имеет вводный характер и рассчитана на начинающих разработчиков или тех, кто только приступает к изучению языка.
+/*
+    Это вторая часть статьи (первая часть — try-catch-finally), посвященной такому языковому механизму Java
+как исключения. Она имеет вводный характер и рассчитана на начинающих разработчиков или тех,
+кто только приступает к изучению языка.
 
 Также я веду курс «Scala for Java Developers» на платформе для онлайн-образования udemy.com (аналог Coursera/EdX).
 
@@ -28,10 +27,11 @@ public class App {
 1. «Магия» checked/unchecked
 
 
-Механизм исключительных ситуация в Java связан с двумя элементами «магии», т.е. поведения,
+    Механизм исключительных ситуация в Java связан с двумя элементами «магии», т.е. поведения,
 которое никак не отражено в исходном коде:
 1. «Магию» java.lang.Throwable — в throw, catch и throws могут стоять исключительно Throwable или его наследники
-   (мы уже разбирали в предыдущей лекции). Это «право» находиться в throw, catch и throws никак не отражено в исходном коде.
+   (мы уже разбирали в предыдущей лекции). Это «право» находиться в throw, catch и throws никак не отражено
+   в исходном коде.
 2. Все исключительные ситуации делятся на «проверяемые» (checked) и «непроверяемые» (unchecked).
    Это свойство присуще «корневищу» (Throwable, Error, Exception, RuntimeException) и передается по наследству.
    Никак не видимо в исходном коде класса исключения.
@@ -73,7 +73,7 @@ checked exception = проверяемое исключение, проверя�
 
     /*
 Мы не можем бросать, но не предупредить
-public class App {
+public class App01 {
     public static void main(String[] args) {
         throw new Exception(); // тут ошибка компиляции
     }
@@ -87,7 +87,7 @@ public class App {
 Мы не можем бросать, но предупредить о «меньшем»
 import java.io.IOException;
 
-public class App {
+public class App01 {
     public static void main(String[] args) throws IOException {
         throw new Exception(); // тут ошибка компиляции
     }
@@ -98,7 +98,7 @@ public class App {
 
     /*
 Мы можем предупредить точно о том, что бросаем
-public class App {
+public class App01 {
     public static void main(String[] args) throws Exception { // предупреждаем о Exception
         throw new Exception(); // и кидаем Exception
     }
@@ -107,7 +107,7 @@ public class App {
 
     /*
 Мы можем предупредить о большем, чем мы бросаем
-public class App {
+public class App01 {
     public static void main(String[] args) throws Throwable { // предупреждаем "целом" Throwable
         throw new Exception(); // а кидаем только Exception
     }
@@ -116,7 +116,7 @@ public class App {
 
 /*
 Можем даже предупредить о том, чего вообще нет
-public class App {
+public class App01 {
     public static void main(String[] args) throws Exception { // пугаем
         // но ничего не бросаем
     }
@@ -126,7 +126,7 @@ public class App {
 
 /*
 Даже если предупреждаем о том, чего нет — все обязаны бояться
-public class App {
+public class App01 {
     public static void main(String[] args) {
         f(); // тут ошибка компиляции
     }
@@ -140,7 +140,7 @@ public class App {
 
 /*
 Хотя они (испугавшиеся) могут перепугать остальных еще больше
-public class App {
+public class App01 {
     // они пугают целым Throwable
     public static void main(String[] args) throws Throwable {
         f();
@@ -168,7 +168,7 @@ public class InternetDownloader {
 3. throws с непроверяемым (unckecked) исключением
 
 Вызов метода, который «пугает» unchecked исключением не накладывает на нас никаких обязанностей.
-public class App {
+public class App01 {
     public static void main(String[] args) {
         f();
     }
@@ -200,7 +200,8 @@ public final class Integer extends Number implements Comparable<Integer> {
     ...
 }
 
-Integer.parseInt() может бросить unchecked NumberFormatException на неподходящем аргументе (int k = Integer.parseInt(«123abc»)), это отразили
+Integer.parseInt() может бросить unchecked NumberFormatException на неподходящем аргументе
+(int k = Integer.parseInt(«123abc»)), это отразили
         — в сигнатуре метода: throws NumberFormatException
         — в документации (javadoc): @ exception
 но это ни к чему нас не обязывает.
@@ -216,7 +217,7 @@ Integer.parseInt() может бросить unchecked NumberFormatException н�
         import java.io.EOFException;
         import java.io.FileNotFoundException;
 
-public class App {
+public class App01 {
     // пугаем ОБОИМИ исключениями
     public static void main(String[] args) throws EOFException, FileNotFoundException {
         if (System.currentTimeMillis() % 2 == 0) {
@@ -233,7 +234,7 @@ public class App {
         import java.io.EOFException;
         import java.io.FileNotFoundException;
 
-public class App {
+public class App01 {
     // пугаем ОБОИМИ исключениями
     public static void main(String[] args) throws EOFException, FileNotFoundException {
         f0();
@@ -250,7 +251,7 @@ public class App {
         import java.io.FileNotFoundException;
         import java.io.IOException;
 
-public class App {
+public class App01 {
     // пугаем ПРЕДКОМ исключений
     public static void main(String[] args) throws IOException {
         if (System.currentTimeMillis() % 2 == 0) {
@@ -267,7 +268,7 @@ public class App {
         import java.io.EOFException;
         import java.io.FileNotFoundException;
 
-public class App {
+public class App01 {
     // пугаем ПРЕДКОМ исключений
     public static void main(String[] args) throws IOException {
         f0();
@@ -284,7 +285,7 @@ public class App {
         import java.io.EOFException;
         import java.io.FileNotFoundException;
 
-public class App {
+public class App01 {
     public static void main(String[] args) throws IOException, InterruptedException {
         f0();
         f1();
@@ -301,7 +302,7 @@ public class App {
 
         Не надо пугать тем, что вы перехватили
         так
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new Exception();
@@ -314,7 +315,7 @@ public class App {
 
 /*
     или так (ставим catch по предку и точно перехватываем)
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new Exception();
@@ -327,7 +328,7 @@ public class App {
 
 /*
     Но если перехватили только потомка, то не выйдет
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new Throwable();
@@ -342,7 +343,7 @@ public class App {
 
 /*
         Не годится, естественно, и перехватывание «брата»
-public class App {
+public class App01 {
     public static void main(String[] args) {
         try {
             throw new Exception();
@@ -361,7 +362,7 @@ public class App {
         import java.io.EOFException;
         import java.io.FileNotFoundException;
 
-public class App {
+public class App01 {
     // EOFException перехватили catch-ом, им не пугаем
     public static void main(String[] args) throws FileNotFoundException {
         try {
@@ -383,7 +384,7 @@ public class App {
         Необходимо понимать, что
         — проверка на cheched исключения происходит в момент компиляции (compile-time checking)
         — перехват исключений (catch) происходит в момент выполнения (runtime checking)
-public class App {
+public class App01 {
     // пугаем Exception
     public static void main(String[] args) throws Exception {
         Throwable t = new Exception(); // и лететь будет Exception
@@ -396,7 +397,7 @@ public class App {
 
 /*
         Полная аналогия с
-public class App {
+public class App01 {
     public static void main(String[] args) throws Exception {
         Object ref = "Hello!";  // ref указывает на строку
         char c = ref.charAt(0); // но тут ошибка компиляции
@@ -415,7 +416,7 @@ public class App {
         но этого уже невозможно сделать при раздельно компиляции. Представьте, что мы МОГЛИ БЫ скомпилировать ОТДЕЛЬНО
         такой класс, упаковать в jar и распространять
 // НЕ КОМПИЛИРУЕТСЯ! ИССЛЕДУЕМ ГИПОТЕТИЧЕСКУЮ СИТУАЦИЮ!
-public class App {
+public class App01 {
     public static void f0(Throwable t) throws Exception {
         throw t;
     }
@@ -426,7 +427,7 @@ public class App {
 */
 
 /*
-    А кто-то берет этот класс, добавляет в classpath и вызывает App.f0(new Throwable()) или App.f1(new Integer(42)).
+    А кто-то берет этот класс, добавляет в classpath и вызывает App01.f0(new Throwable()) или App01.f1(new Integer(42)).
     В таком случае JVM столкнулась бы с ситуацией, когда от нее требует бросить проверяемое исключение,
     которое не отследил компилятор (в случае с f0) или вызвать метод, которого нет (в случае с f1)!
 
@@ -437,7 +438,7 @@ public class App {
         средой исполнения (оно разрешено, например в JavaScript).
 
         Компилятор не пропустит этот код, хотя метод main ГАРАНТИРОВАННО НЕ ВЫБРОСИТ ИСКЛЮЧЕНИЯ
-public class App {
+public class App01 {
     // пугаем Exception
     public static void main(String[] args) throws Exception {
         try {
@@ -453,7 +454,7 @@ public class App {
 */
 
 /*
-public class App {
+public class App01 {
     // ТЕПЕРЬ пугаем Throwable
     public static void main(String[] args) throws Throwable {
         try {
@@ -530,7 +531,7 @@ public class Demo {
 }
 
 
-public class App {
+public class App01 {
     public static void main(String[] args) {
         // тут все компилируется, Demo.test хотел Parent и мы дали ему подтип - Child_01
         Demo.test(new Child_01());
@@ -560,7 +561,8 @@ public class App {
         ИСКЛЮЧИТЕЛЬНО НА ОСНОВЕ НАСЛЕДОВАНИЯ.
 
         Правило крайне простое:
-        1. Если исключение из списка Throwable, Error, Exception, RuntimeException — то твое свойство надо просто запомнить.
+        1. Если исключение из списка Throwable, Error, Exception, RuntimeException — то твое свойство надо просто
+           запомнить.
         2. Если ты не из списка, то твое свойство равно свойству предка. Нарушить наследование тут нельзя.
 
         Если мы породим потомков A, B, C, D, E, F, G, H, I, J, K, L которые следующим образом наследуются от «корневища»
@@ -574,8 +576,7 @@ public class App {
         A(UNC)  D(UNC)  |      F(C)        RuntimeException(UNCHECKED)
         /   \             |     /   \             |       |
         B(UNC) C(UNC)       |   G(C)  H(C)          I(UNC)  J(UNC)
-        E(C)                   /   \
-        K(UNC) L(UNC)
+                          E(C)   /   \
+                            K(UNC) L(UNC)
 
-        */
-}
+ */
