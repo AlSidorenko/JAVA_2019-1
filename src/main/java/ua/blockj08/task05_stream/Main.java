@@ -44,8 +44,9 @@ public class Main {
         return (int) streamInt.filter(n -> n > 0).count();
     }
 
-    public void multiplyingTheArrayElementsByTheNumber(int[] arr, int numb) {
+    public int[] multiplyingTheArrayElementsByTheNumber(int[] arr, int numb) {
         IntStream streamInt = Arrays.stream(arr);
-        streamInt.map(n -> n * numb).forEach(System.out::println);
+        //streamInt.map(n -> n * numb).forEach(System.out::println);
+        return streamInt.map(n -> n * numb).toArray();
     }
 }

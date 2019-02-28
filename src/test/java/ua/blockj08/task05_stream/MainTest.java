@@ -2,7 +2,9 @@ package ua.blockj08.task05_stream;
 
 import org.junit.Test;
 
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created on 27.02.2019.
@@ -50,5 +52,13 @@ public class MainTest {
         int result = mainStream.countOfElementsIsGreaterThanZero(arr);
         int expected = 7;
         assertEquals(result, expected);
+    }
+
+    @Test
+    public void whenMultiplyingTheArrayElementsByTheNumber() {
+        int numb = 7;
+        int[] result = mainStream.multiplyingTheArrayElementsByTheNumber(arr, numb);
+        int[] expected = {-126, 175, -868, 0, 0, 126, 546, 623, 7168, 6272, 54978};
+        assertThat(result, is(expected));
     }
 }
