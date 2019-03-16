@@ -1,4 +1,4 @@
-package ua.blockj08.trainigcod.vertex_academy_com;
+package ua.blockj08.trainigcod.vertex_academy_com.lesson_1_Java_8_Lambda_Comparator_example;
 
 /**
  * Created on 14.03.2019.

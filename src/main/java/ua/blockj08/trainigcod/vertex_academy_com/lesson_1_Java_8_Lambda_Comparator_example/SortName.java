@@ -1,7 +1,5 @@
 package ua.blockj08.trainigcod.vertex_academy_com.lesson_1_Java_8_Lambda_Comparator_example;
 
-import ua.blockj08.trainigcod.vertex_academy_com.User;
-
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
